@@ -47,14 +47,10 @@
 #define PI 3.14159265
 
 using namespace std;
-// rosbag filter "HK-Data20190316-2 20190331_NJ_LL.bag" "lidaronly_HK-Data20190316-2 20190331_NJ_LL.bag" "topic == '/velodyne_points'"
-// rosbag filter "HK-Data20190117.bag" "lidaronly_HK-Data20190117.bag" "topic == '/velodyne_points'"
 
 typedef pcl::PointXYZI  PointType;
 
-// extern const string pointCloudTopic = "/velodyne_points";
-// extern const string pointCloudTopic = "/kitti_scan";
-extern const string pointCloudTopic = "/os1_points";
+extern const string pointCloudTopic = "/lidar_points";
 extern const string imuTopic = "/imu/data";
 
 // Save pcd
@@ -97,16 +93,24 @@ extern const bool useCloudRing = false; // if true, ang_res_y and ang_bottom are
 // extern const float ang_bottom = 16.6+0.1;
 // extern const int groundScanInd = 7;
 
-// Ouster OS1-64
-extern const int N_SCAN = 64;
+// Ouster OS1-32
+extern const int N_SCAN = 32;
 extern const int Horizon_SCAN = 1024;
 extern const float ang_res_x = 360.0/float(Horizon_SCAN);
 extern const float ang_res_y = 33.2/float(N_SCAN-1);
 extern const float ang_bottom = 16.6+0.1;
-extern const int groundScanInd = 15;
+extern const int groundScanInd = 11;
+
+// Ouster OS1-64
+// extern const int N_SCAN = 64;
+// extern const int Horizon_SCAN = 1024;
+// extern const float ang_res_x = 360.0/float(Horizon_SCAN);
+// extern const float ang_res_y = 33.2/float(N_SCAN-1);
+// extern const float ang_bottom = 16.6+0.1;
+// extern const int groundScanInd = 15;
 
 extern const bool loopClosureEnableFlag = true;
-extern const double mappingProcessInterval = 0.3;
+extern const double mappingProcessInterval = 0.03;
 
 extern const float scanPeriod = 0.1;
 extern const int systemDelay = 0;
@@ -114,7 +118,7 @@ extern const int imuQueLength = 200;
 
 extern const float sensorMinimumRange = 1.0;
 extern const float sensorMountAngle = 0.0;
-extern const float segmentTheta = 60.0/180.0*M_PI; // decrese this value may improve accuracy
+extern const float segmentTheta = 10.0/180.0*M_PI; // decrese this value may improve accuracy
 extern const int segmentValidPointNum = 5;
 extern const int segmentValidLineNum = 3;
 extern const float segmentAlphaX = ang_res_x / 180.0 * M_PI;
@@ -136,9 +140,9 @@ extern const int   surroundingKeyframeSearchNum = 50; // submap size (when loop 
 // history key frames (history submap for loop closure)
 extern const float historyKeyframeSearchRadius = 20.0; // NOT used in Scan Context-based loop detector / default 7.0; key frame that is within n meters from current pose will be considerd for loop closure
 extern const int   historyKeyframeSearchNum = 25; // 2n+1 number of history key frames will be fused into a submap for loop closure
-extern const float historyKeyframeFitnessScore = 1.5; // default 0.3; the smaller the better alignment
+extern const float historyKeyframeFitnessScore = 0.5; // default 0.3; the smaller the better alignment
 
-extern const float globalMapVisualizationSearchRadius = 1500.0; // key frames with in n meters will be visualized
+extern const float globalMapVisualizationSearchRadius = 15000.0; // key frames with in n meters will be visualized
 
 
 struct smoothness_t{ 

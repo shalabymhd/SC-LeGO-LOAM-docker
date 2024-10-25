@@ -53,7 +53,7 @@ RUN mkdir -p /root/catkin_ws/src
 WORKDIR /root/catkin_ws/src
 
 # Clone LEGO-LOAM repository
-RUN git clone https://github.com/gisbi-kim/SC-LeGO-LOAM.git
+RUN git clone https://github.com/shalabymhd/SC-LeGO-LOAM-docker.git
 
 # Build the workspace
 WORKDIR /root/catkin_ws
